@@ -10,6 +10,8 @@
 		1516B27F2952CD7E00750FF5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1516B27E2952CD7E00750FF5 /* AppDelegate.swift */; };
 		1516B2812952CD8100750FF5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1516B2802952CD8100750FF5 /* Assets.xcassets */; };
 		1516B2842952CD8100750FF5 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1516B2822952CD8100750FF5 /* MainMenu.xib */; };
+		15A9B4612953F68B00735023 /* StatusItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A9B4602953F68B00735023 /* StatusItem.swift */; };
+		15A9B4632953FA3800735023 /* NSImage+PNG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A9B4622953FA3800735023 /* NSImage+PNG.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -18,6 +20,8 @@
 		1516B2802952CD8100750FF5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1516B2832952CD8100750FF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		1516B2852952CD8100750FF5 /* BarScan.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BarScan.entitlements; sourceTree = "<group>"; };
+		15A9B4602953F68B00735023 /* StatusItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusItem.swift; sourceTree = "<group>"; };
+		15A9B4622953FA3800735023 /* NSImage+PNG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage+PNG.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +55,8 @@
 			isa = PBXGroup;
 			children = (
 				1516B27E2952CD7E00750FF5 /* AppDelegate.swift */,
+				15A9B4602953F68B00735023 /* StatusItem.swift */,
+				15A9B4622953FA3800735023 /* NSImage+PNG.swift */,
 				1516B2802952CD8100750FF5 /* Assets.xcassets */,
 				1516B2822952CD8100750FF5 /* MainMenu.xib */,
 				1516B2852952CD8100750FF5 /* BarScan.entitlements */,
@@ -129,6 +135,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				1516B27F2952CD7E00750FF5 /* AppDelegate.swift in Sources */,
+				15A9B4612953F68B00735023 /* StatusItem.swift in Sources */,
+				15A9B4632953FA3800735023 /* NSImage+PNG.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

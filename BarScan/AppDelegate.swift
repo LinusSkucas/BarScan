@@ -12,6 +12,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBOutlet var window: NSWindow!
     @IBOutlet weak var importMenuItem: NSMenuItem!
+    var statusItem = StatusItem()
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
@@ -26,7 +27,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     override func awakeFromNib() {
-        <#code#>
+        statusItem.setUpMenu(importMenuItem: importMenuItem)
+        super.awakeFromNib()
     }
 
 }
