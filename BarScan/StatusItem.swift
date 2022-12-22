@@ -25,21 +25,11 @@ class StatusItem: NSResponder, NSServicesMenuRequestor {
     }
     
     // MARK - Continuity Camera Stuff
-    override func validRequestor(forSendType sendType: NSPasteboard.PasteboardType?, returnType: NSPasteboard.PasteboardType?) -> Any? {
-        if let pasteboardType = returnType,
-            NSImage.imageTypes.contains(pasteboardType.rawValue) {
-            return self
-        } else {
-            return super.validRequestor(forSendType: sendType, returnType: returnType)
-        }
-    }
-
     func readSelection(from pasteboard: NSPasteboard) -> Bool {
         guard pasteboard.canReadItem(withDataConformingToTypes: NSImage.imageTypes) else { return false }
         guard let image = NSImage(pasteboard: pasteboard) else { return false }
         
         testWritingPhoto(image: image)
-//        self.imageView.image = image
         return true
     }
     
@@ -49,7 +39,8 @@ class StatusItem: NSResponder, NSServicesMenuRequestor {
         
         do {
             try image.pngWrite(to: destinationURL, options: .withoutOverwriting)
-        } catch {
+        } catch let error {
+            print(error.localizedDescription)
             print("fail!")
         }
     }

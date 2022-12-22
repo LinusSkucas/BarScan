@@ -8,10 +8,10 @@
 import Cocoa
 
 @main
-class AppDelegate: NSObject, NSApplicationDelegate {
+class AppDelegate: NSResponder, NSApplicationDelegate {
 
     @IBOutlet var window: NSWindow!
-    @IBOutlet weak var importMenuItem: NSMenuItem!
+    @IBOutlet var importMenuItem: NSMenuItem!
     var statusItem = StatusItem()
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
@@ -24,6 +24,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
         return true
+    }
+    
+    // MARK - Continuity Camera Stuff
+    override func validRequestor(forSendType sendType: NSPasteboard.PasteboardType?, returnType: NSPasteboard.PasteboardType?) -> Any? {
+        if let pasteboardType = returnType,
+            NSImage.imageTypes.contains(pasteboardType.rawValue) {
+            return statusItem
+        } else {
+            return super.validRequestor(forSendType: sendType, returnType: returnType)
+        }
     }
     
     override func awakeFromNib() {
