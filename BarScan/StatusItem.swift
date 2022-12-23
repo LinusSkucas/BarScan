@@ -29,13 +29,15 @@ class StatusItem: NSResponder, NSServicesMenuRequestor {
         guard pasteboard.canReadItem(withDataConformingToTypes: NSImage.imageTypes) else { return false }
         guard let image = NSImage(pasteboard: pasteboard) else { return false }
         
-        testWritingPhoto(image: image)
+        saveFileToDesktop(image: image)
         return true
     }
     
-    func testWritingPhoto(image: NSImage) {
+    func saveFileToDesktop(image: NSImage) {
         let desktopURL = FileManager.default.urls(for: .desktopDirectory, in: .userDomainMask).first!
-        let destinationURL = desktopURL.appending(component: "testPhoto.png")
+        let date = Date()
+        let name = "BarScan Image at \(date.formatted(date: .abbreviated, time: .shortened)).png"
+        let destinationURL = desktopURL.appending(component: name)
         
         do {
             try image.pngWrite(to: destinationURL, options: .withoutOverwriting)
