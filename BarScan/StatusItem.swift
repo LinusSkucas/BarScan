@@ -7,6 +7,7 @@
 
 import Foundation
 import Cocoa
+import UniformTypeIdentifiers
 
 class StatusItem: NSResponder, NSServicesMenuRequestor {
     var statusItem: NSStatusItem?
@@ -25,25 +26,30 @@ class StatusItem: NSResponder, NSServicesMenuRequestor {
     }
     
     // MARK - Continuity Camera Stuff
-    func readSelection(from pasteboard: NSPasteboard) -> Bool {
+    func readSelection(from pasteboard: NSPasteboard) -> Bool {  // TODO: Refactor out non pasteboard things
         guard pasteboard.canReadItem(withDataConformingToTypes: NSImage.imageTypes) else { return false }
-        guard let image = NSImage(pasteboard: pasteboard) else { return false }
-        
-        saveFileToDesktop(image: image)
-        return true
-    }
-    
-    func saveFileToDesktop(image: NSImage) {
-        let desktopURL = FileManager.default.urls(for: .desktopDirectory, in: .userDomainMask).first!
-        let date = Date()
-        let name = "BarScan Image at \(date.formatted(date: .abbreviated, time: .shortened)).png"
-        let destinationURL = desktopURL.appending(component: name)
-        
-        do {
-            try image.pngWrite(to: destinationURL, options: .withoutOverwriting)
-        } catch let error {
-            print(error.localizedDescription)
-            print("fail!")
+        let itemType = pasteboard.availableType(from: [.pdf, .png, NSPasteboard.PasteboardType("public.jpeg")])
+        guard let itemType else {
+            print("No image type")
+            print(pasteboard.types)
+            return false
         }
+        
+        let userURL = FileManager.default.homeDirectoryForCurrentUser
+        do {
+            let temporaryDirectoryURL = try FileManager.default.url(for: .itemReplacementDirectory, in: .userDomainMask, appropriateFor: userURL, create: true)
+            
+            let itemData = pasteboard.data(forType: itemType)
+            guard let itemData else { return false }
+            
+            let name = "Item.\(UTType(itemType.rawValue)!.preferredFilenameExtension!)"
+            let temporaryURL = temporaryDirectoryURL.appending(component: name)
+            
+            try itemData.write(to: temporaryURL)
+        } catch {
+            print(error.localizedDescription)  // TODO: Better error handling
+            return false
+        }
+        return true
     }
 }
