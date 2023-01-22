@@ -9,14 +9,23 @@ import Foundation
 import Cocoa
 import UniformTypeIdentifiers
 
-class StatusItem: NSResponder, NSServicesMenuRequestor {
+class StatusItem: NSResponder, NSServicesMenuRequestor, NSPopoverDelegate {
     var statusItem: NSStatusItem?
     var statusItemMenu = NSMenu()
+    
+    var popover: NSPopover?
     
     func setUpMenu(importMenuItem: NSMenuItem) {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
         guard let button = statusItem?.button else { return }
         button.image = NSImage(systemSymbolName: "camera", accessibilityDescription: nil)
+        
+        let popover = NSPopover()
+        popover.contentSize = NSSize(width: 340, height: 120)
+        popover.behavior = .transient
+        popover.delegate = self
+        
+        self.popover = popover
         
         Task {
             importMenuItem.menu?.removeItem(importMenuItem)
@@ -46,10 +55,19 @@ class StatusItem: NSResponder, NSServicesMenuRequestor {
             let temporaryURL = temporaryDirectoryURL.appending(component: name)
             
             try itemData.write(to: temporaryURL)
+            displayResult(url: temporaryURL)
         } catch {
             print(error.localizedDescription)  // TODO: Better error handling
             return false
         }
         return true
+    }
+    
+    func displayResult(url: URL) {
+        
+    }
+    
+    func popoverShouldDetach(_ popover: NSPopover) -> Bool {
+        true
     }
 }

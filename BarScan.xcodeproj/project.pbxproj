@@ -12,6 +12,8 @@
 		1516B2842952CD8100750FF5 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1516B2822952CD8100750FF5 /* MainMenu.xib */; };
 		15A9B4612953F68B00735023 /* StatusItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A9B4602953F68B00735023 /* StatusItem.swift */; };
 		15A9B4632953FA3800735023 /* NSImage+PNG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A9B4622953FA3800735023 /* NSImage+PNG.swift */; };
+		15B2E275297C98AB003A1E87 /* DocumentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B2E274297C98AB003A1E87 /* DocumentListView.swift */; };
+		15B2E277297C9943003A1E87 /* ImportedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B2E276297C9943003A1E87 /* ImportedItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		1516B2852952CD8100750FF5 /* BarScan.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BarScan.entitlements; sourceTree = "<group>"; };
 		15A9B4602953F68B00735023 /* StatusItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusItem.swift; sourceTree = "<group>"; };
 		15A9B4622953FA3800735023 /* NSImage+PNG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage+PNG.swift"; sourceTree = "<group>"; };
+		15B2E274297C98AB003A1E87 /* DocumentListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentListView.swift; sourceTree = "<group>"; };
+		15B2E276297C9943003A1E87 /* ImportedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportedItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +58,8 @@
 		1516B27D2952CD7E00750FF5 /* BarScan */ = {
 			isa = PBXGroup;
 			children = (
+				15B2E274297C98AB003A1E87 /* DocumentListView.swift */,
+				15B2E276297C9943003A1E87 /* ImportedItem.swift */,
 				1516B27E2952CD7E00750FF5 /* AppDelegate.swift */,
 				15A9B4602953F68B00735023 /* StatusItem.swift */,
 				15A9B4622953FA3800735023 /* NSImage+PNG.swift */,
@@ -137,6 +143,8 @@
 				1516B27F2952CD7E00750FF5 /* AppDelegate.swift in Sources */,
 				15A9B4612953F68B00735023 /* StatusItem.swift in Sources */,
 				15A9B4632953FA3800735023 /* NSImage+PNG.swift in Sources */,
+				15B2E277297C9943003A1E87 /* ImportedItem.swift in Sources */,
+				15B2E275297C98AB003A1E87 /* DocumentListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
