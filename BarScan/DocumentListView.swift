@@ -59,7 +59,7 @@ struct DocumentListView: View {
                     Spacer()
                     HStack {
                         Button("Save As...") {
-                            print("save")
+                            saveAs()
                         }
                         Spacer()
                         Button {
@@ -88,6 +88,18 @@ struct DocumentListView: View {
         .onDrag {
             let itemProvider = NSItemProvider(object: item.url as NSURL)
             return itemProvider // TODO: Get preview (use thumbnail)
+        }
+    }
+    
+    func saveAs() {
+        let savePanel = NSSavePanel()
+        savePanel.allowedContentTypes = [item.fileType.utType]
+        let response = savePanel.runModal()
+        if response == .OK {
+            guard let saveURL = savePanel.directoryURL else { return }
+            print(saveURL.startAccessingSecurityScopedResource())
+            try! FileManager.default.copyItem(at: item.url, to: saveURL)
+            saveURL.stopAccessingSecurityScopedResource()
         }
     }
 }

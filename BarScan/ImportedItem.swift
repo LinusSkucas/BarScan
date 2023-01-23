@@ -7,6 +7,7 @@
 
 import Foundation
 import QuickLookThumbnailing
+import UniformTypeIdentifiers
 
 struct ImportedItem {
     var fileType: FileType
@@ -16,6 +17,17 @@ struct ImportedItem {
         case png
         case jpeg
         case pdf
+        
+        var utType: UTType {
+            switch self {
+            case .png:
+                return UTType.png
+            case .jpeg:
+                return UTType.jpeg
+            case .pdf:
+                return UTType.pdf
+            }
+        }
     }
 }
 
