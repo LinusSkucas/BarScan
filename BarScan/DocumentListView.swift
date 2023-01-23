@@ -53,7 +53,7 @@ struct DocumentListView: View {
                 VStack(alignment: .leading) {
                     Text("Imported Item")
                         .font(.title)
-                    Text(item.fileType.rawValue)
+                    Text(item.fileType.preferredFilenameExtension ?? "")
                         .textCase(.uppercase)
                         .foregroundColor(.secondary)
                     Spacer()
@@ -93,7 +93,7 @@ struct DocumentListView: View {
     
     func saveAs() {
         let savePanel = NSSavePanel()
-        savePanel.allowedContentTypes = [item.fileType.utType]
+        savePanel.allowedContentTypes = [item.fileType]
         let response = savePanel.runModal()
         if response == .OK {
             guard let saveURL = savePanel.directoryURL else { return }
