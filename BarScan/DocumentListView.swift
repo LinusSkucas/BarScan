@@ -97,7 +97,7 @@ struct DocumentListView: View {
         savePanel.allowedContentTypes = [item.fileType]
         let response = savePanel.runModal()
         if response == .OK {
-            guard let saveURL = savePanel.directoryURL else { return }
+            guard let saveURL = savePanel.url else { return }
             print(saveURL.startAccessingSecurityScopedResource())
             try! FileManager.default.copyItem(at: item.url, to: saveURL)
             saveURL.stopAccessingSecurityScopedResource()
