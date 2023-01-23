@@ -53,6 +53,7 @@ struct DocumentListView: View {
                 VStack(alignment: .leading) {
                     Text("Imported Item")
                         .font(.title)
+                        .fontDesign(.rounded)
                     Text(item.fileType.preferredFilenameExtension ?? "")
                         .textCase(.uppercase)
                         .foregroundColor(.secondary)
