@@ -49,7 +49,7 @@ struct DocumentListView: View {
         GroupBox {
             HStack(alignment: .top) {
                 ItemThumbnailView(itemURL: item.url)
-                
+
                 VStack(alignment: .leading) {
                     Text("Imported Item")
                         .font(.title)
@@ -91,16 +91,52 @@ struct DocumentListView: View {
             return itemProvider // TODO: Get preview (use thumbnail)
         }
     }
-    
+
     func saveAs() {
         let savePanel = NSSavePanel()
+        let window = LinusWindow()
+        
+        window.center()
+        window.makeKeyAndOrderFront(nil)
+        window.animationBehavior = .none
+
         savePanel.allowedContentTypes = [item.fileType]
-        let response = savePanel.runModal()
-        if response == .OK {
-            guard let saveURL = savePanel.url else { return }
-            print(saveURL.startAccessingSecurityScopedResource())
-            try! FileManager.default.copyItem(at: item.url, to: saveURL)
-            saveURL.stopAccessingSecurityScopedResource()
+        savePanel.beginSheetModal(for: window) { response in
+            if response == .OK {
+                guard let saveURL = savePanel.url else { return }
+                print(saveURL.startAccessingSecurityScopedResource())
+                try! FileManager.default.copyItem(at: item.url, to: saveURL)
+                saveURL.stopAccessingSecurityScopedResource()
+            }
+        }
+        
+        savePanel.makeKeyAndOrderFront(nil)
+        NSApp.activate(ignoringOtherApps: true)
+    }
+}
+
+class LinusWindow: NSWindow {
+    override var alphaValue: CGFloat {
+        get {
+            0.0
+        } set {
+            super.alphaValue = newValue
+        }
+    }
+
+    override var backgroundColor: NSColor! {
+        get {
+            .clear
+        } set {
+            super.backgroundColor = newValue
+        }
+    }
+
+    override var isOpaque: Bool {
+        get {
+            false
+        } set {
+            super.isOpaque = newValue
         }
     }
 }
